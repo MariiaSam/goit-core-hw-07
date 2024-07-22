@@ -24,10 +24,38 @@ def change_contact(args, book: AddressBook):
     name, old_phone, new_phone = args
     record = book.find(name)
     if record is None:
-        return 'Contact does not exist, you can add it'
+        return "Contact does not exist, you can add it"
     else:
         record.edit_phone(old_phone, new_phone)
         return "Phone changed"
+
+@input_error
+def show_phone(args, book: AddressBook):
+    name = args[0]
+    record = book.find(name)
+    if record is None:
+        return "Contact does not exist, you can add it"
+    return record
+
+@input_error
+def add_birthday(args, book: AddressBook):
+    if len(args) != 2:
+        return "Invalid number of arguments. Use: add-birthday [name] [date]"
+    name, date = args
+    record = book.find(name)
+    if record:
+        record.add_birthday(date)
+        return "Birthday added."
+    else:
+        return "Contact does not exist, you can add it"
+    
+@input_error
+def show_birthday(args, book):
+    pass
+
+@input_error
+def birthdays(args, book):
+    pass
 
 
 

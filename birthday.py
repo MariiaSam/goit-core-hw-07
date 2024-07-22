@@ -10,5 +10,5 @@ class Birthday(Field):
              raise ValueError("Invalid date format. Use DD.MM.YYYY")
         
     def __str__(self):
-        return f'{self.value.strftime('%d.%m.%Y')}'
+        return f"{self.value.strftime('%d.%m.%Y')}"
     

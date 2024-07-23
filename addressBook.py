@@ -9,7 +9,6 @@ class AddressBook(UserDict):
     def __str__(self):
         lines = [str(record) for record in self.data.values()]
         return '\n'.join(lines)
-        # return '\n'.join(str(record) for record in self.data.values())
 
     def add_record(self, record: Record):
         if record.name.value in self.data:
@@ -40,5 +39,5 @@ class AddressBook(UserDict):
                 if current_day <= birthday_current_year <= next_week:
                     upcoming_birthdays.append(
                         {"name": name, "birthday_date":  birthday_current_year.strftime('%d.%m.%Y')})
-                return upcoming_birthdays
-                
+       
+        return upcoming_birthdays

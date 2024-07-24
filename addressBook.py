@@ -1,5 +1,6 @@
 from collections import UserDict
 from datetime import datetime, timedelta
+# import calendar // if use Saturday and Sunday
 
 from record import Record
 
@@ -37,7 +38,17 @@ class AddressBook(UserDict):
 
                 next_week = current_day + timedelta(days=7)
                 if current_day <= birthday_current_year <= next_week:
+
+                    # calendar
+                    # if birthday_current_year.weekday() in (calendar.SATURDAY, calendar.SUNDAY):
+                    #      while birthday_current_year.weekday() != calendar.MONDAY:
+
+                    if birthday_current_year.weekday() == 5:
+                        birthday_current_year += timedelta(days=2)
+                    elif birthday_current_year.weekday() == 6:
+                        birthday_current_year += timedelta(days=1)
+
                     upcoming_birthdays.append(
                         {"name": name, "birthday_date":  birthday_current_year.strftime('%d.%m.%Y')})
-       
+
         return upcoming_birthdays

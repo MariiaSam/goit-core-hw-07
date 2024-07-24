@@ -12,11 +12,11 @@ def parse_input(user_input):
 def add_contact(args, book: AddressBook):
     name, phone, *_ = args
     record = book.find(name)
-    message = 'Contact updated.'
+    message = "Contact updated."
     if record is None:
         record = Record(name)
         book.add_record(record)
-        message = 'Contact added.'
+        message = "Contact added."
     if phone:
         record.add_phone(phone)
     return message
@@ -24,12 +24,12 @@ def add_contact(args, book: AddressBook):
 
 @input_error
 def change_contact(args, book: AddressBook):
-    if len(args) != 3:
-        return "Invalid number of arguments. Usage: change [name] [old_number] [new_number]."
+    # if len(args) != 3:
+    #     return "Invalid number of arguments. Usage: change [name] [old_number] [new_number]."
     name, old_phone, new_phone = args
     record = book.find(name)
     if record is None:
-        return "Contact does not exist, you can add it"
+        return "Contact does not exist, you can add it."
     else:
         record.edit_phone(old_phone, new_phone)
         return "Phone changed."
@@ -40,7 +40,7 @@ def show_phone(args, book: AddressBook):
     name = args[0]
     record = book.find(name)
     if record is None:
-        return "Contact does not exist, you can add it"
+        return "Contact does not exist, you can add it."
     return record
 
 
@@ -69,6 +69,7 @@ def show_birthday(args, book: AddressBook):
     else:
         return "Contact does not exist, you can add it"
 
+
 @input_error
 def birthdays(args, book: AddressBook):
     upcoming = book.get_upcoming_birthdays()
@@ -76,6 +77,7 @@ def birthdays(args, book: AddressBook):
         return "\n".join([f"{item['name']}: {item['birthday_date']}" for item in upcoming])
     else:
         return "No upcoming birthdays."
+
 
 def main():
     book = AddressBook()
